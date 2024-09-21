@@ -106,9 +106,8 @@ LangSmith provides detailed analytics on query performance:
 ![LangSmith Example](frontend/public/images/LangSmithExample.jpg)
 
 Examples of complex queries the system can handle:
-- "Show me the distribution of calibration due dates for each manufacturer over the next 6 months."
-- "What is the correlation between environmental temperature and measurement uncertainty across all certificates?"
-- "Identify any trends in the 'AsFound' vs 'AfterAdjustment' measurements for a specific equipment type over the last year."
+- "that meas uncert are available in the [Group] of the [Certificate]"
+- "Provide me with all available nominals for the [Group] on the [Certificate]"
 
 
 ## File Structure
