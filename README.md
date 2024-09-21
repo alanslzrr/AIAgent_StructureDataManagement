@@ -84,16 +84,11 @@ Note: To change the schema loaded in MongoDB, you only need to update the schema
    - A chat interface for entering natural language queries about the certificates.
 
 3. Enter questions in natural language, such as:
-   - "What is the average environmental temperature across all certificates?"
-   - "How many certificates are there for each equipment type?"
-   - "What are the top 5 manufacturers with the most certificates?"
+- "What uncertainty measures are in the [Group] of the [Certificate]"
+- "Provide me with all the nominals available for the [Group] in the [Certificate]"
 
 4. The system will process your query, generate a MongoDB aggregation pipeline, execute it, and display the results in the chat interface.
    
-Examples of complex queries the system can handle:
-- "Show me the distribution of calibration due dates for each manufacturer over the next 6 months."
-- "What is the correlation between environmental temperature and measurement uncertainty across all certificates?"
-- "Identify any trends in the 'AsFound' vs 'AfterAdjustment' measurements for a specific equipment type over the last year."
 
 ![Workflow Diagram](frontend/public/images/AgentAI.jpg)
 
