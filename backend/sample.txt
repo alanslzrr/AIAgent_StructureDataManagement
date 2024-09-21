@@ -1,0 +1,43 @@
+Q: What is the average environmental temperature across all certificates?
+A: [
+  {"$group": {"_id": null, "avgTemp": {"$avg": {"$toDouble": "$EnvironmentalTemperature"}}}},
+  {"$project": {"_id": 0, "avgTemp": 1}}
+]
+
+Q: How many certificates are there for each equipment type?
+A: [
+  {"$group": {"_id": "$EquipmentType", "count": {"$sum": 1}}},
+  {"$sort": {"count": -1}}
+]
+
+Q: What are the top 5 manufacturers with the most certificates?
+A: [
+  {"$group": {"_id": "$Manufacturer", "count": {"$sum": 1}}},
+  {"$sort": {"count": -1}},
+  {"$limit": 5}
+]
+
+Q: Find all certificates where the 'AsFound' value is outside the 'LowLimit' and 'HighLimit' range for any measurement.
+A: [
+  {"$unwind": "$Datasheet"},
+  {"$unwind": "$Datasheet.Measurements"},
+  {"$match": {
+    "$expr": {
+      "$or": [
+        {"$lt": [{"$toDouble": "$Datasheet.Measurements.AsFound"}, {"$toDouble": "$Datasheet.Measurements.LowLimit"}]},
+        {"$gt": [{"$toDouble": "$Datasheet.Measurements.AsFound"}, {"$toDouble": "$Datasheet.Measurements.HighLimit"}]}
+      ]
+    }
+  }},
+  {"$group": {"_id": "$CertNo"}},
+  {"$project": {"_id": 0, "CertNo": "$_id"}}
+]
+
+Q: What is the average TUR (Test Uncertainty Ratio) for temperature measurements?
+A: [
+  {"$unwind": "$Datasheet"},
+  {"$unwind": "$Datasheet.Measurements"},
+  {"$match": {"Datasheet.Group": "Temperatura - Medición"}},
+  {"$group": {"_id": null, "avgTUR": {"$avg": {"$toDouble": "$Datasheet.Measurements.TUR"}}}},
+  {"$project": {"_id": 0, "avgTUR": 1}}
+]

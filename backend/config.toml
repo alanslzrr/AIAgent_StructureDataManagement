@@ -1,0 +1,9 @@
+# Configuración del tema personalizado en .streamlit/config.toml
+
+[theme]
+primaryColor = "#ed6f38"
+backgroundColor = "#f9f9f9"
+secondaryBackgroundColor="#e8e8e8"
+textColor = "#333333" # Más oscuro para mejor contraste
+font = "sans serif"
+base = "light"
